@@ -1,0 +1,40 @@
+@inherits ToDoBase
+<h1 class="text-100px text-center w-full text-red-light font-thin">todos</h1>
+<section>
+	<header class="new-todo">
+		<input type="checkbox" id="toggle-all" class="toggle-all" onclick="@(() => OnToggleAllClicked())">
+		<label for="toggle-all" class="@((IsAllCompleted() == true? "is-all-completed" : ""))" ></label>
+		<input type="text" placeholder="What needs to be done?" @bind="newToDo" onkeydown="@OnKeyDown">
+	</header>
+	<ul class="todo-list">
+		@if(currentFilter == Filter.All) {
+			@foreach (var toDo in toDoList)
+			{
+				<ToDoListItem ToDo="@toDo"/>
+			}
+		} 
+		else 
+		{
+			@foreach (var toDo in filteredToDoList)
+			{
+				<ToDoListItem ToDo="@toDo"/>
+			}
+		}
+	</ul>
+	<footer class="footer">
+		<span class="todo-count">@ItemLeftText()</span>
+		<ul class="filters">
+			<li>
+				<a class="@((currentFilter == Filter.All? "selected" : ""))" onclick="@(() => OnFilterClicked(Filter.All))">All</a>
+			</li>
+
+			<li>
+				<a class="@((currentFilter == Filter.Active? "selected" : ""))" onclick="@(() => OnFilterClicked(Filter.Active))">Active</a>
+			</li>
+			<li>
+				<a class="@((currentFilter == Filter.Completed? "selected" : ""))" onclick="@(() => OnFilterClicked(Filter.Completed))">Completed</a>
+			</li>
+		</ul>
+		<button class="@((HasCompleted() == false ? "hidden" : "clear-completed"))" onclick="@(() => OnClearCompleted())">Clear completed</button>
+	</footer>
+</section>

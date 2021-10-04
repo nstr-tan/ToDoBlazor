@@ -1,0 +1,20 @@
+@inherits ToDoListItemBase
+
+<li class="todo-item" @ondblclick="OnDoubleClick">
+	<div class="view">
+		<input class="toggle" type="checkbox" checked="@toDo.IsCompleted" @onclick="OnCompleteClicked">
+		@if(isEditMode == false)
+		{
+			<label class="@((toDo.IsCompleted == true? "completed" : ""))">@toDo.Title</label>
+		}
+		else 
+		{
+			<input type="text" class="edit" placeholder="What needs to be done?" @bind="@toDo.Title" onkeydown="@OnKeyDown">
+		}
+		@if(isEditMode == false)
+		{
+			<button class="delete" @onclick="OnRemoveClicked"></button>
+		}
+	</div>
+</li>
+

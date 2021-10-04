@@ -1,0 +1,18 @@
+{
+  "name": "blazortodo",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build:css": "postcss wwwroot/css/app.css -o wwwroot/css/app.min.css",
+    "watch:css": "postcss -w wwwroot/css/app.css -o wwwroot/css/app.min.css"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "autoprefixer": "^10.3.6",
+    "postcss": "^8.3.8",
+    "postcss-cli": "^9.0.1",
+    "tailwindcss": "^2.2.16"
+  }
+}
